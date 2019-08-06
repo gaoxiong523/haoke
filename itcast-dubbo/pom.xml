@@ -16,6 +16,7 @@
     </parent>
     <modules>
         <module>itcast-dubbo-service</module>
+        <module>itcast-dubbo-consumer</module>
     </modules>
 
     <dependencies>
