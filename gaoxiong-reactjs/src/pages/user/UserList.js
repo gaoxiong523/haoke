@@ -2,6 +2,7 @@ import React from 'react';
 import {Table, Divider, Tag} from 'antd';
 import {connect} from 'dva';
 
+
 const columns = [
     {
         title: '姓名',//列的标题

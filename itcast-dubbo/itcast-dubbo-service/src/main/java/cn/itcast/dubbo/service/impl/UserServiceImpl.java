@@ -14,6 +14,7 @@ import java.util.List;
  * @date 2019/8/6 0006 下午 11:14
  */
 @Service(version = "${dubbo.service.version}")//声明这是dubbo服务
+@org.springframework.stereotype.Service
 public class UserServiceImpl implements UserService {
     /**
      * 查询所有用户,模拟实现
