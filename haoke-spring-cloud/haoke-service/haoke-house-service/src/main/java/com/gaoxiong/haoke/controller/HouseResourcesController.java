@@ -28,7 +28,7 @@ public class HouseResourcesController {
 	 */
 	@RequestMapping(method= RequestMethod.GET)
 	public Result findAll(){
-		return new Result(true,StatusCode.OK,"查询成功",houseResourcesService.findAll());
+		return new Result(true,StatusCode.OK,"查询成功", houseResourcesService.findAll());
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class HouseResourcesController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findById(@PathVariable String id){
-		return new Result(true,StatusCode.OK,"查询成功",houseResourcesService.findById(id));
+		return new Result(true,StatusCode.OK,"查询成功", houseResourcesService.findById(id));
 	}
 
 
@@ -62,7 +62,7 @@ public class HouseResourcesController {
      */
     @RequestMapping(value="/search",method = RequestMethod.POST)
     public Result findSearch( @RequestBody HouseResources houseResources){
-        return new Result(true,StatusCode.OK,"查询成功",houseResourcesService.findSearch(houseResources));
+        return new Result(true,StatusCode.OK,"查询成功", houseResourcesService.findSearch(houseResources));
     }
 	
 	/**
@@ -82,7 +82,7 @@ public class HouseResourcesController {
 	@RequestMapping(value="/{id}",method= RequestMethod.PUT)
 	public Result update(@RequestBody HouseResources houseResources, @PathVariable String id ){
 		houseResources.setId(Long.valueOf(id));
-		houseResourcesService.update(houseResources);		
+		houseResourcesService.update(houseResources);
 		return new Result(true,StatusCode.OK,"修改成功");
 	}
 	
