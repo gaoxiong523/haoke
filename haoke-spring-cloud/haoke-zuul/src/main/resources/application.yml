@@ -16,8 +16,12 @@ eureka:
 zuul:
   routes:
     house-service:
-      path: /uac/**
+      path: /house/**
       serviceId: house-service
+      sensitiveHeader:
+    feign-api:
+      path: /api/**
+      serviceId: feign-api
       sensitiveHeader:
   ribbon:
     eager-load:

@@ -1,6 +1,15 @@
 spring:
   application:
     name: house-service
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://106.12.84.126:3306/haoke?useUnicode=true&characterEncoding=UTF8
+      username: root
+      password: 123456
+  jpa:
+    database: MySQL
+    show-sql: true
+
 server:
   port: 9010
 eureka:
@@ -13,3 +22,4 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}

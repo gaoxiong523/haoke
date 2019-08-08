@@ -17,6 +17,18 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.gaoxiong</groupId>
+            <artifactId>haoke-common</artifactId>
+            <version>${haoke.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

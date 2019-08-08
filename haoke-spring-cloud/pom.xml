@@ -18,13 +18,14 @@
     </parent>
     <groupId>com.gaoxiong</groupId>
     <artifactId>haoke-spring-cloud</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${haoke.version}</version>
     <name>haoke-spring-cloud</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <haoke.version>0.0.1-SNAPSHOT</haoke.version>
     </properties>
 
     <dependencies>
@@ -61,11 +62,11 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 -->
-        <dependency>
+      <!--  <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
