@@ -103,9 +103,13 @@ public class EstateServiceImpl  implements EstateService {
 		estateDao.deleteById(Long.valueOf(id));
 	}
 
+	@Override
+	public Page<Estate> findAllPage ( int page, int size ) {
+		return estateDao.findAll(PageRequest.of(page-1,size ));
+	}
 
 
- private ExampleMatcher exampleMatcher (){
+	private ExampleMatcher exampleMatcher (){
         return ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
     }

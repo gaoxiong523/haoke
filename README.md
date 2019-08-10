@@ -34,3 +34,9 @@ chenchuxin/dubbo-admin
 ```text
 http://106.12.84.126:8080/
 ```
+```text
+前端工程运行命令
+tyarn install
+tyarn start
+
+```
