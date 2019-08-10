@@ -102,9 +102,14 @@ public class HouseResourcesServiceImpl implements HouseResourcesService {
 		houseResourcesDao.deleteById(id);
 	}
 
-	
+	@Override
+	public Page<HouseResources> findAllPage ( int page, int size ) {
+		PageRequest pageRequest = PageRequest.of(page - 1, size);
+		return houseResourcesDao.findAll(pageRequest);
+	}
 
- private ExampleMatcher exampleMatcher (){
+
+	private ExampleMatcher exampleMatcher (){
         return ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
     }

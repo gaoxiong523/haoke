@@ -60,4 +60,5 @@ public interface BaseService<T> {
      */
     public void deleteById(String id);
 
+    Page<T> findAllPage ( int page, int size );
 }
