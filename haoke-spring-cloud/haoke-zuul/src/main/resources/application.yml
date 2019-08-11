@@ -23,10 +23,14 @@ zuul:
       path: /api/**
       serviceId: feign-api
       sensitiveHeader:
+    qiniu-service:
+      path: /**
+      serviceId: qiniu-service
+      sensitiveHeader:
   ribbon:
     eager-load:
       enabled: true
-#      clients: houser-service
+      clients: houser-service
     ReadTimeout: 30000
     SocketTimeout: 30000
 

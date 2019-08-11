@@ -32,7 +32,7 @@ class PicturesWall extends React.Component {
         return (
             <div>
                 <Upload
-                    action="1111111"
+                    action="/haoke/qiniu/image/file"
                     listType="picture-card"
                     fileList={fileList}
                     onPreview={this.handlePreview}

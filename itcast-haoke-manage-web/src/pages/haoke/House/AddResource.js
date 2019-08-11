@@ -67,14 +67,21 @@ class AddResource extends PureComponent {
         delete values.houseType_5;
 
 
+        //楼盘的id
+        values.estateId = this.state.estateId;
+
+        values.pic = [...this.state.pics].join(",");
+
         dispatch({
-          type: 'haoke/submitRegularForm',
+          //添加房源的地址
+          type: 'haoke/submitHouseForm',
           payload: values,
         });
       }
     });
   };
 
+  //这个是搜索楼盘
   handleSearch = (value) => {
     let arr = new Array();
     if (value.length > 0) {
@@ -89,8 +96,22 @@ class AddResource extends PureComponent {
     });
   };
 
+
+
+
+  //处理图片上传后的结果
   handleFileList = (obj) => {
     console.log(obj, "图片列表");
+    let pics  = new Set();
+    obj.forEach((v,k)=>{
+      if (v.response) {
+        pics.add(v.response.name);
+      }
+    });
+    console.log(pics)
+    this.setState({
+      pics: pics
+    })
   }
 
 

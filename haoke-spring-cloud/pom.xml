@@ -9,6 +9,7 @@
         <module>haoke-zuul</module>
         <module>haoke-feign-api</module>
         <module>haoke-service</module>
+        <module>haoke-qiniu-upload</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

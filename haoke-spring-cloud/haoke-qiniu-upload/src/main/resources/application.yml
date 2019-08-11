@@ -1,17 +1,11 @@
-spring:
-  application:
-    name: house-service
-  datasource:
-      driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://106.12.84.126:3306/haoke?useUnicode=true&characterEncoding=UTF8
-      username: root
-      password: 123456
-  jpa:
-    database: MySQL
-    show-sql: true
 
 server:
-  port: 9010
+  port: 9011
+qiniu:
+  accessKey: 9fQrwFrDdsBowPaNFwmZs8g1H7RLOYwL9cabDx6k
+  secretKey: MJECg5MkxW2rp4bVWjCKFJ9dDczkSVnURfYe6JvN
+  bucket-name: haoke-huadong
+  cdn-prefix: pw0lsxiue.bkt.clouddn.com
 eureka:
   client:
     register-with-eureka: true
@@ -23,6 +17,9 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     hostname: ${spring.application.name}
-#logging:
-#  level:
-#    root: debug
+spring:
+  application:
+    name: qiniu-service
+  servlet:
+    multipart:
+      enabled: true

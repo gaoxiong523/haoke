@@ -10,7 +10,7 @@ export default {
   },
 
   effects: {
-    *submitRegularForm({ payload }, { call }) {
+    *submitHouseForm({ payload }, { call }) {
       console.log(payload);
       yield call(addHouseResource, payload);
       message.success('提交成功');

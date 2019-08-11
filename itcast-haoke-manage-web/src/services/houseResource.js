@@ -2,5 +2,6 @@ import request from '@/utils/request';
 import { stringify } from 'qs';
 
 export async function queryResource(params) {
-  return request(`/haoke/houseResources?${stringify(params)}`);
+  console.log("请求的参数是:"+params)
+  return request(`/haoke/house/houseResources?${stringify(params)}`);
 }

@@ -1,6 +1,7 @@
-import React, { PureComponent, Fragment } from 'react';
-import { connect } from 'dva';
+import React, {PureComponent, Fragment} from 'react';
+import {connect} from 'dva';
 import moment from 'moment';
+import ShowPics from './ShowPics';
 import {
   Row,
   Col,
@@ -18,14 +19,14 @@ import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 import styles from '../TableList.less';
 
 const FormItem = Form.Item;
-const { Option } = Select;
+const {Option} = Select;
 const getValue = obj =>
   Object.keys(obj)
     .map(key => obj[key])
     .join(',');
 
 /* eslint react/no-multi-comp:0 */
-@connect(({ houseResource, loading }) => ({
+@connect(({houseResource, loading}) => ({
   houseResource,
   loading: loading.models.houseResource,
 }))
@@ -43,44 +44,53 @@ class Resource extends PureComponent {
   columns = [
     {
       title: '房源编号',
-      dataIndex: 'name',
+      dataIndex: 'id',
     },
     {
       title: '房源信息',
-      dataIndex: 'desc',
+      dataIndex: 'title',
     },
     {
       title: '图',
-      dataIndex: 'pic'
+      dataIndex: 'pic',
+      render: (text, record, index) => {
+        return <ShowPics pics={text}/>
+      }
+    },
+    // {
+    //   title: '楼栋',
+    //   render: (text,record,index)=>{
+    //     return record.buildingFloorNum+"栋"+record.buildingNum+"单元"+record.buildingUnit+"号"
+    //   }
+    // },
+    // {
+    //   title: '支付方式',
+    //   render: (text,record,index)=>{
+    //     return payType.get(record.paymentMethod)
+    //   }
+    // },
+    {
+      title: '户型',
+      dataIndex: 'houseType'
     },
     {
-      title: '委托人',
-      dataIndex: 'status'
+      title: '面积',
+      dataIndex: 'useArea',
+      render: (text,record,index)=>{
+        return text+"平方"
+      }
     },
     {
-      title: '委托时间',
-      dataIndex: 'updatedAt',
-      render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>,
-    },
-    {
-      title: '咨询量',
-      dataIndex: 'status'
-    },
-    {
-      title: '看房量',
-      dataIndex: 'status'
-    },
-    {
-      title: '状态',
-      dataIndex: 'status'
+      title: '楼层',
+      dataIndex: 'floor'
     },
     {
       title: '操作',
       render: (text, record) => (
         <Fragment>
           <a onClick={() => this.handleUpdateModalVisible(true, record)}>查看详情</a>
-          <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          <Divider type="vertical"/>
+          <a href="">删除</a>
         </Fragment>
       ),
     },
@@ -88,7 +98,7 @@ class Resource extends PureComponent {
 
   componentDidMount() { //当组件挂载完成后执行加载数据
     console.log("loading.......");
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     dispatch({
       type: 'houseResource/fetch',
       // type: 'rule/fetch',
@@ -96,11 +106,11 @@ class Resource extends PureComponent {
   }
 
   handleStandardTableChange = (pagination, filtersArg, sorter) => {
-    const { dispatch } = this.props;
-    const { formValues } = this.state;
+    const {dispatch} = this.props;
+    const {formValues} = this.state;
 
     const filters = Object.keys(filtersArg).reduce((obj, key) => {
-      const newObj = { ...obj };
+      const newObj = {...obj};
       newObj[key] = getValue(filtersArg[key]);
       return newObj;
     }, {});
@@ -122,7 +132,7 @@ class Resource extends PureComponent {
   };
 
   handleFormReset = () => {
-    const { form, dispatch } = this.props;
+    const {form, dispatch} = this.props;
     form.resetFields();
     this.setState({
       formValues: {},
@@ -134,15 +144,15 @@ class Resource extends PureComponent {
   };
 
   toggleForm = () => {
-    const { expandForm } = this.state;
+    const {expandForm} = this.state;
     this.setState({
       expandForm: !expandForm,
     });
   };
 
   handleMenuClick = e => {
-    const { dispatch } = this.props;
-    const { selectedRows } = this.state;
+    const {dispatch} = this.props;
+    const {selectedRows} = this.state;
 
     if (!selectedRows) return;
     switch (e.key) {
@@ -173,7 +183,7 @@ class Resource extends PureComponent {
   handleSearch = e => {
     e.preventDefault();
 
-    const { dispatch, form } = this.props;
+    const {dispatch, form} = this.props;
 
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -195,42 +205,40 @@ class Resource extends PureComponent {
   };
 
 
-
-
   renderSimpleForm() {
     const {
-      form: { getFieldDecorator },
+      form: {getFieldDecorator},
     } = this.props;
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
-        <Row gutter={{ md: 5, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 5, lg: 24, xl: 48}}>
           <Col md={4} sm={24}>
-              {getFieldDecorator('name')(<Input placeholder="区域" />)}
+            {getFieldDecorator('name')(<Input placeholder="区域"/>)}
           </Col>
           <Col md={4} sm={24}>
-              {getFieldDecorator('name')(<Input placeholder="楼盘名称" />)}
+            {getFieldDecorator('name')(<Input placeholder="楼盘名称"/>)}
           </Col>
           <Col md={4} sm={24}>
-              {getFieldDecorator('status')(
-                <Select placeholder="房屋类型" style={{ width: '100%' }}>
-                  <Option value="0">住宅</Option>
-                  <Option value="1">商住两用</Option>
-                </Select>
-              )}
+            {getFieldDecorator('status')(
+              <Select placeholder="房屋类型" style={{width: '100%'}}>
+                <Option value="0">住宅</Option>
+                <Option value="1">商住两用</Option>
+              </Select>
+            )}
           </Col>
           <Col md={4} sm={24}>
-              {getFieldDecorator('name')(<Input placeholder="户型" />)}
+            {getFieldDecorator('name')(<Input placeholder="户型"/>)}
           </Col>
           <Col md={8} sm={24}>
             <span className={styles.submitButtons}>
               <Button type="primary" htmlType="submit">
                 查询
               </Button>
-              <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+              <Button style={{marginLeft: 8}} onClick={this.handleFormReset}>
                 重置
               </Button>
-              <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-                展开 <Icon type="down" />
+              <a style={{marginLeft: 8}} onClick={this.toggleForm}>
+                展开 <Icon type="down"/>
               </a>
             </span>
           </Col>
@@ -241,81 +249,81 @@ class Resource extends PureComponent {
 
   renderAdvancedForm() {
     const {
-      form: { getFieldDecorator },
+      form: {getFieldDecorator},
     } = this.props;
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
-        <Row gutter={{ md: 6, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 6, lg: 24, xl: 48}}>
           <Col md={6} sm={24}>
             <FormItem label="">
-              {getFieldDecorator('name')(<Input placeholder="区域" />)}
+              {getFieldDecorator('name')(<Input placeholder="区域"/>)}
             </FormItem>
           </Col>
           <Col md={6} sm={24}>
             <FormItem label="">
-             {getFieldDecorator('name')(<Input placeholder="楼盘名称" />)}
+              {getFieldDecorator('name')(<Input placeholder="楼盘名称"/>)}
             </FormItem>
           </Col>
           <Col md={6} sm={24}>
             <FormItem label="">
               {getFieldDecorator('status')(
-                  <Select placeholder="房屋类型" style={{ width: '100%' }}>
-                    <Option value="0">住宅</Option>
-                    <Option value="1">商住两用</Option>
-                  </Select>
-                )}
+                <Select placeholder="房屋类型" style={{width: '100%'}}>
+                  <Option value="0">住宅</Option>
+                  <Option value="1">商住两用</Option>
+                </Select>
+              )}
             </FormItem>
           </Col>
           <Col md={6} sm={24}>
             <FormItem label="">
-             {getFieldDecorator('name')(<Input placeholder="户型" />)}
+              {getFieldDecorator('name')(<Input placeholder="户型"/>)}
             </FormItem>
           </Col>
         </Row>
-        <Row gutter={{ md: 6, lg: 24, xl: 48 }}>
+        <Row gutter={{md: 6, lg: 24, xl: 48}}>
           <Col md={6} sm={24}>
             <FormItem label="">
-              {getFieldDecorator('name')(<Input placeholder="房源编号" />)}
+              {getFieldDecorator('name')(<Input placeholder="房源编号"/>)}
             </FormItem>
           </Col>
           <Col md={6} sm={24}>
             <Row>
               <Col md={10} sm={24}>
                 <FormItem label="">
-                  {getFieldDecorator('name')(<Input placeholder="价格" />)}
+                  {getFieldDecorator('name')(<Input placeholder="价格"/>)}
                 </FormItem>
               </Col>
               <Col md={4} sm={24}>
-                <div style={{textAlign:'center'}}>到</div>
+                <div style={{textAlign: 'center'}}>到</div>
               </Col>
               <Col md={10} sm={24}>
                 <FormItem label="">
-                  {getFieldDecorator('name')(<Input placeholder="价格" />)}
+                  {getFieldDecorator('name')(<Input placeholder="价格"/>)}
                 </FormItem>
               </Col>
             </Row>
           </Col>
           <Col md={6} sm={24}>
             <FormItem label="">
-            {getFieldDecorator('name')(<Input placeholder="朝向" />)}
+              {getFieldDecorator('name')(<Input placeholder="朝向"/>)}
             </FormItem>
           </Col>
           <Col md={6} sm={24}>
             <FormItem label="">
-             {getFieldDecorator('name')(<Input placeholder="装修" />)}
+              {getFieldDecorator('name')(<Input placeholder="装修"/>)}
             </FormItem>
           </Col>
         </Row>
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ float: 'right', marginBottom: 24 }}>
+        <div style={{overflow: 'hidden'}}>
+          <div style={{float: 'right', marginBottom: 24}}>
             <Button type="primary" htmlType="submit">
               查询
             </Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>
+            <Button style={{marginLeft: 8}} onClick={this.handleFormReset}>
               重置
             </Button>
-            <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
-              收起 <Icon type="up" />
+            <a style={{marginLeft: 8}} onClick={this.toggleForm}>
+              收起 <Icon type="up"/>
             </a>
           </div>
         </div>
@@ -324,16 +332,16 @@ class Resource extends PureComponent {
   }
 
   renderForm() {
-    const { expandForm } = this.state;
+    const {expandForm} = this.state;
     return expandForm ? this.renderAdvancedForm() : this.renderSimpleForm();
   }
 
   render() {
     const {
-      houseResource: { data },
+      houseResource: {data},
       loading,
     } = this.props;
-    const { selectedRows } = this.state;
+    const {selectedRows} = this.state;
 
     console.log(this.props);
 
@@ -342,7 +350,7 @@ class Resource extends PureComponent {
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
-            
+
             <StandardTable
               selectedRows={selectedRows}
               loading={loading}
