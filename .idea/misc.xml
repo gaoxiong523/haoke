@@ -20,6 +20,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/haoke-spring-cloud/pom.xml" />
+        <option value="$PROJECT_DIR$/gaoxiong-graphql-java/pom.xml" />
       </list>
     </option>
   </component>
