@@ -27,7 +27,7 @@ module.exports = {
     /** 模型文件路径 */
     models_path: '/models',
     /** 数据库主机IP */
-    host: '172.16.55.185',
+    host: '106.12.84.126',
     /** 数据库的端口号 */
     port: 3306,
     /** 数据库类型 */
@@ -35,7 +35,7 @@ module.exports = {
     /** 数据库登录用户名 */
     username: 'root',
     /** 数据库密码 */
-    password: 'root',
+    password: '123456',
     /** 数据库名称 */
     database: 'myhome',
     /** 是否显示数据库日志 */
