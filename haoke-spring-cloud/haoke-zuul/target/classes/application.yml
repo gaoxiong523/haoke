@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: haoke-zuul
+server:
+  port: 9002
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+zuul:
+  routes:
+    house-service:
+      path: /house/**
+      serviceId: house-service
+      sensitiveHeader:
+    feign-api:
+      path: /api/**
+      serviceId: feign-api
+      sensitiveHeader:
+    qiniu-service:
+      path: /**
+      serviceId: qiniu-service
+      sensitiveHeader:
+  ribbon:
+    eager-load:
+      enabled: true
+      clients: houser-service
+    ReadTimeout: 30000
+    SocketTimeout: 30000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+      isolation:
+        thread:
+          #一个容器实例,单个请求超时5S +重试>10s,超15S则熔断
+          timeoutInMillseconds: 15000

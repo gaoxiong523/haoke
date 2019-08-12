@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: house-service
+  datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://106.12.84.126:3306/haoke?useUnicode=true&characterEncoding=UTF8
+      username: root
+      password: 123456
+      hikari:
+        minimum-idle: 3
+        maximum-pool-size: 10
+        max-lifetime: 30000
+        connection-test-query: select 1
+  jpa:
+    database: MySQL
+    show-sql: true
+
+server:
+  port: 9010
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}
+#logging:
+#  level:
+#    root: debug

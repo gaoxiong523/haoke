@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gaoxiong-graphql-java/gaoxiong-graphql-java.iml" filepath="$PROJECT_DIR$/gaoxiong-graphql-java/gaoxiong-graphql-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/haoke.iml" filepath="$PROJECT_DIR$/.idea/haoke.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-common/haoke-common.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-common/haoke-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-eureka/haoke-eureka.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-eureka/haoke-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-feign-api/haoke-feign-api.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-feign-api/haoke-feign-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/haoke-house-service.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/haoke-house-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/haoke-qiniu-upload.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/haoke-qiniu-upload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-service.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-spring-cloud.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-spring-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/haoke-zuul.iml" filepath="$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/haoke-zuul.iml" />
+    </modules>
+  </component>
+</project>

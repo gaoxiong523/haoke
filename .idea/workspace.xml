@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5c5aec59-5a0d-4457-8e0b-5011738a9fb7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/gaoxiong-graphql-java/graphql.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/gaoxiong-graphql-java/graphql.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gaoxiong-graphql-java/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/gaoxiong-graphql-java/graphql.schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/HouseResourcesGraphQLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/HouseResourcesGraphQLController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/provider/GraphQLProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/provider/GraphQLProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/MyDataFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/MyDataFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/HouseResourcesPageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/HouseResourcesPageImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/MyDataFetcherImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/MyDataFetcherImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/DataPacket.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/DataPacket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/IMClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/IMClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/IMEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/IMEvent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat-window.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat-window.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat-window.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat-window.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/chat/wsmain.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/chat/wsmain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/find/find.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/find/find.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/find/find.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/find/find.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/find/loadmore.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/find/loadmore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/find/tab.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/find/tab.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/calc.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/calc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/maphouse.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/maphouse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/home/searchbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/home/searchbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/my/my.css" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/my/my.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haoke-web/src/modules/my/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/haoke-web/src/modules/my/my.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-common/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-feign-api/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-eureka/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/target/" />
+    <ignored path="$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/target/" />
+    <ignored path="$PROJECT_DIR$/gaoxiong-graphql-java/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/haoke-web/src/common.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="chat.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/haoke-web/src/modules/chat/chat.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-81">
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calc.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/haoke-web/src/modules/home/calc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="GraphQL File" />
+        <option value="GraphQL Schema File" />
+        <option value="GraphQL Endpoint File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="C:/Eclipseworkspace/jstone" value="PREVIEW" />
+        <entry key="D:/maven/jsonrpc4j" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/gaoxiong-graphql-java/src/main/resources/user.graphqls" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/pom.xml" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqle" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphql" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/dao/HouseResourcesDao.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/service/impl/HouseResourcesServiceImpl.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/BaseService.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/service/impl/EstateServiceImpl.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/controller/EstateController.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/controller/HouseResourcesController.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/MyDataFetcher.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/MyDataFetcherImpl.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/HouseResourcesGraphQLController.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/provider/GraphQLProvider.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/HouseResourcePageImpl.java" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqls" />
+        <option value="$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/HouseResourcesPageImpl.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:/apache-maven-3.5.2" />
+        <option name="userSettingsFile" value="C:\apache-maven-3.5.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="haoke-house-service" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="vmOptions" value="-Dfile.encoding=GB2312" />
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/gaoxiong-reactjs/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/gaoxiong-reactjs/package.json" />
+      <path value="$PROJECT_DIR$/haoke-web/package.json" />
+      <path value="$PROJECT_DIR$/itcast-haoke-manage-web/functions/package.json" />
+      <path value="$PROJECT_DIR$/itcast-haoke-manage-web/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1347" />
+    <option name="height" value="689" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="NBKnowledgePane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="haoke" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="haoke" type="462c0819:PsiDirectoryNode" />
+              <item name="haoke-web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="haoke" type="462c0819:PsiDirectoryNode" />
+              <item name="haoke-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="haoke" type="462c0819:PsiDirectoryNode" />
+              <item name="haoke-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="haoke" type="462c0819:PsiDirectoryNode" />
+              <item name="haoke-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphQL Schemas" type="390a5855:JSGraphQLSchemaDirectoryNode" />
+            </path>
+            <path>
+              <item name="haoke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SearchEverywhereHistoryKey" value="pagination&#9;PSI&#9;JAVA://com.gaoxiong.haoke.controller.Pagination" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gaoxiong-graphql-java/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/application.yml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-service/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/src/main/resources/application.yml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/models/houseResource.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/pages/haoke/House/AddResource.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/pages/haoke/House/Resource.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/pages/haoke/House/models/form.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/pages/haoke/Utils/PicturesWall.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/services/haoke.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/services/houseResource.js</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/gaoxiong-graphql-java/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/gaoxiong-graphql-java/src/main/java/com/gaoxiong/graphql/demo/GraphQLDemo.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/gaoxiong-graphql-java/src/main/java/com/gaoxiong/graphql/vo/User.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/gaoxiong-graphql-java/src/main/resources/user.graphqls</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/src/main/java/com/gaoxiong/haoke/ImageUploadResult.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/src/main/java/com/gaoxiong/haoke/QiniuApp.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/src/main/java/com/gaoxiong/haoke/config/WebConfig.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/src/main/java/com/gaoxiong/haoke/controller/QiniuController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/haoke-spring-cloud/haoke-qiniu-upload/src/main/resources/application.yml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/itcast-haoke-manage-web/src/pages/haoke/House/ShowPics.js</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.HouseServiceApp">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="EurekaServerApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="haoke-eureka" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gaoxiong.haoke.EurekaServerApp" />
+    </configuration>
+    <configuration name="FeignApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="haoke-feign-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gaoxiong.haoke.FeignApp" />
+    </configuration>
+    <configuration name="HouseServiceApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="haoke-house-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gaoxiong.haoke.HouseServiceApp" />
+    </configuration>
+    <configuration name="QiniuApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="haoke-qiniu-upload" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gaoxiong.haoke.QiniuApp" />
+    </configuration>
+    <configuration name="ZuulApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="haoke-zuul" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gaoxiong.haoke.ZuulApp" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.HouseServiceApp" />
+      <item itemvalue="Spring Boot.FeignApp" />
+      <item itemvalue="Spring Boot.EurekaServerApp" />
+      <item itemvalue="Spring Boot.ZuulApp" />
+      <item itemvalue="Spring Boot.QiniuApp" />
+    </list>
+  </component>
+  <component name="SpringGeneralSettings">
+    <option name="allowAutoConfigurationMode" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c5aec59-5a0d-4457-8e0b-5011738a9fb7" name="Default" comment="" />
+      <created>1565433528557</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565433528557</updated>
+      <workItem from="1565433537513" duration="602000" />
+      <workItem from="1565570719413" duration="327000" />
+      <workItem from="1565571101569" duration="13012000" />
+    </task>
+    <task id="LOCAL-00001" summary="graphql-搭建前台app系统">
+      <created>1565595811810</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1565595811810</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="13941000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info anchor="right" id="Key Promoter X" order="3" />
+      <window_info anchor="right" id="PlantUML" order="3" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.50075644" side_tool="true" visible="true" weight="0.50689656" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32980332" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Tail" order="7" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" weight="0.32931036" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Run Dashboard" order="7" sideWeight="0.49924356" weight="0.8534483" />
+      <window_info anchor="bottom" id="GraphQL" sideWeight="0.49848714" weight="0.65" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49924356" visible="true" weight="0.50689656" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36384267" />
+      <window_info anchor="right" id="Bean Validation" order="3" />
+      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Alibaba Cloud View" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
+      <window_info id="Alibaba Cloud Explorer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="graphql-搭建前台app系统" />
+    <MESSAGE value="graphql-搭建前台app系统-2" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphql-搭建前台app系统-2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="37" lean-forward="true" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaoxiong-graphql-java/src/main/resources/user.graphqls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaoxiong-graphql-java/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="33" column="21" selection-start-line="29" selection-start-column="7" selection-end-line="33" selection-end-column="21" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/maven/repository/org/springframework/data/spring-data-commons/2.1.10.RELEASE/spring-data-commons-2.1.10.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/dao/HouseResourcesDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/pojo/HouseResources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/service/impl/EstateServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="101" column="32" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
+          <folding>
+            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1541#1542#0" expanded="true" />
+            <element signature="e#1938#1939#0" expanded="true" />
+            <element signature="e#1967#1968#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/BaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/controller/EstateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="94" column="34" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/controller/HouseResourcesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/src/main/java/com/gaoxiong/haoke/ZuulApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-zuul/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/maven/repository/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0.jar!/com/zaxxer/hikari/HikariDataSource.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/maven/repository/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0-sources.jar!/com/zaxxer/hikari/HikariDataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/MyDataFetcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/MyDataFetcherImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#384#385#0" expanded="true" />
+            <element signature="e#411#412#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/HouseResourcesGraphQLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/provider/GraphQLProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="true" />
+            <element signature="e#2048#2049#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/controller/Pagination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/resources/haoke.graphqls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/service/impl/HouseResourcesServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#1699#1700#0" expanded="true" />
+            <element signature="e#1749#1750#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-spring-cloud/haoke-service/haoke-house-service/src/main/java/com/gaoxiong/haoke/graphqlController/service/impl/HouseResourcesPageImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-web/src/common.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaoxiong-graphql-java/graphql.schema.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gaoxiong-graphql-java/graphql.config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-264">
+          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-web/src/modules/chat/chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/haoke-web/src/modules/home/calc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.25350702" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

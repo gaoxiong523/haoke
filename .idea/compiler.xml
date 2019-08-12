@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gaoxiong-graphql-java" />
+        <module name="haoke-common" />
+        <module name="haoke-eureka" />
+        <module name="haoke-feign-api" />
+        <module name="haoke-house-service" />
+        <module name="haoke-qiniu-upload" />
+        <module name="haoke-zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gaoxiong-graphql-java" target="8" />
+      <module name="haoke-common" target="1.8" />
+      <module name="haoke-eureka" target="1.8" />
+      <module name="haoke-feign-api" target="1.8" />
+      <module name="haoke-house-service" target="1.8" />
+      <module name="haoke-qiniu-upload" target="1.8" />
+      <module name="haoke-service" target="1.8" />
+      <module name="haoke-spring-cloud" target="1.8" />
+      <module name="haoke-zuul" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
