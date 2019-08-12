@@ -10,5 +10,5 @@ services:
     container_name: "ant-design-pro_dev"
     volumes:
       - ../src:/usr/src/app/src
-      - ../config:/usr/src/app/config
+      - ../provider:/usr/src/app/provider
       - ../mock:/usr/src/app/mock

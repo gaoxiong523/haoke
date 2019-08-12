@@ -40,7 +40,7 @@ public interface BaseService<T> {
      * @param id
      * @return
      */
-    public T findById(String id);
+    public T findById(Long id);
 
     /**
      * 增加
@@ -58,7 +58,7 @@ public interface BaseService<T> {
      * 删除
      * @param id
      */
-    public void deleteById(String id);
+    public void deleteById(Long id);
 
     Page<T> findAllPage ( int page, int size );
 }

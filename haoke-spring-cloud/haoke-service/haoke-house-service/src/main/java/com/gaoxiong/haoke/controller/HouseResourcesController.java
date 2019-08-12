@@ -48,7 +48,7 @@ public class HouseResourcesController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.GET)
 	public Result findById(@PathVariable String id){
-		return new Result(true,StatusCode.OK,"查询成功", houseResourcesService.findById(id));
+		return new Result(true,StatusCode.OK,"查询成功", houseResourcesService.findById(Long.valueOf(id)));
 	}
 
 
@@ -102,7 +102,7 @@ public class HouseResourcesController {
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
 	public Result delete(@PathVariable String id ){
-		houseResourcesService.deleteById(id);
+		houseResourcesService.deleteById(Long.valueOf(id));
 		return new Result(true,StatusCode.OK,"删除成功");
 	}
 

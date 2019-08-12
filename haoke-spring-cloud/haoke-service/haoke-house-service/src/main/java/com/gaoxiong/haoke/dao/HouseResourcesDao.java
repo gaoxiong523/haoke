@@ -9,6 +9,6 @@ import com.gaoxiong.haoke.pojo.HouseResources;
  * @author Administrator
  *
  */
-public interface HouseResourcesDao extends JpaRepository<HouseResources,String>{
+public interface HouseResourcesDao extends JpaRepository<HouseResources,Long>{
 	
 }

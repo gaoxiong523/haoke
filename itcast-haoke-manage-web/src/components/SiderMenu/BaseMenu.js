@@ -10,7 +10,7 @@ import styles from './index.less';
 
 const { SubMenu } = Menu;
 
-// Allow menu.js config icon as string or ReactNode
+// Allow menu.js provider icon as string or ReactNode
 //   icon: 'setting',
 //   icon: 'http://demo.com/icon.png',
 //   icon: <Icon type="setting" />,

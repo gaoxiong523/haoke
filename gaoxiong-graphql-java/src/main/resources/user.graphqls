@@ -1,0 +1,13 @@
+schema:  {
+    query: UserQuery
+}
+
+type:UserQuery{
+    user(id:Long):User
+}
+
+type User{
+    id:ID!
+    name:Stringg
+    age:Int
+}

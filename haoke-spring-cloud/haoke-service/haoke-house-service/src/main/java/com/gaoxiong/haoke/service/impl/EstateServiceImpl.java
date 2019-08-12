@@ -71,7 +71,7 @@ public class EstateServiceImpl  implements EstateService {
 	 * @return
 	 */
 	@Override
-    public Estate findById( String id) {
+    public Estate findById( Long id) {
 		return estateDao.findById(Long.valueOf(id)).get();
 	}
 
@@ -99,7 +99,7 @@ public class EstateServiceImpl  implements EstateService {
 	 * @param id
 	 */
 	@Override
-    public void deleteById( String id) {
+    public void deleteById( Long id) {
 		estateDao.deleteById(Long.valueOf(id));
 	}
 

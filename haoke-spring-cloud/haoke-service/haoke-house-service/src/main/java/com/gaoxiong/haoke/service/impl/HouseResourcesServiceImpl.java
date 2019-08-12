@@ -70,7 +70,7 @@ public class HouseResourcesServiceImpl implements HouseResourcesService {
 	 * @return
 	 */
 	@Override
-	public HouseResources findById( String id) {
+	public HouseResources findById( Long id) {
 		return houseResourcesDao.findById(id).get();
 	}
 
@@ -98,7 +98,7 @@ public class HouseResourcesServiceImpl implements HouseResourcesService {
 	 * @param id
 	 */
 	@Override
-	public void deleteById( String id) {
+	public void deleteById( Long id) {
 		houseResourcesDao.deleteById(id);
 	}
 

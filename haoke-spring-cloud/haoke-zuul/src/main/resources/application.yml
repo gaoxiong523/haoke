@@ -31,8 +31,8 @@ zuul:
     eager-load:
       enabled: true
       clients: houser-service
-    ReadTimeout: 30000
-    SocketTimeout: 30000
+    ReadTimeout: 300000
+    SocketTimeout: 300000
 
 hystrix:
   command:

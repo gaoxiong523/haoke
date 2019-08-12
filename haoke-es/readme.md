@@ -9,7 +9,7 @@ services:
     volumes: #挂载文件
       - ./elasticsearch/logs/:/usr/share/logs/
      # - ./elasticsearch/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+provider
     ports:
       - "9200:9200" #暴露的端口信息和docker run -d -p 80:80一样
       - "9300:9300" 
@@ -22,7 +22,7 @@ services:
     image: docker.elastic.co/logstash/logstash:${ELK_VERSION}
     container_name: logstash01
     volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+provider
       - ./logstash/pipeline:/usr/share/logstash/pipeline
     ports:
       - "5044:5044"
@@ -37,7 +37,7 @@ services:
     image: docker.elastic.co/kibana/kibana:${ELK_VERSION}
     container_name: kibana01
     volumes:
-      - ./kibana/config/:/usr/share/kibana/config:ro
+provider
     ports:
       - "5601:5601"
     networks:
