@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>haoke-house-service</module>
+        <module>haoke-ad-service</module>
     </modules>
 
 

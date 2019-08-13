@@ -11,6 +11,23 @@ import MapHouse from './maphouse.js';
 import Calculator from './calc.js';
 import SearchBar from './searchbar.js';
 
+import ApolloClient from 'apollo-boost';
+import gql from "graphql-tag";
+
+//定义客户端
+const client = new ApolloClient({
+    uri:"http://127.0.0.1:9002/house/graphql"
+})
+
+//定义查询
+const GET_INDEX_ADS = gql`{
+    IndexAdList {
+        list{
+            original
+        }
+    }
+}`;
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -43,11 +60,17 @@ class Home extends React.Component {
     //     globalLoading: false
     //   })
     // });
-    let swipe = new Promise((resolve, reject) => {
-      axios.post('/homes/swipe').then((data)=>{
-        resolve(data.data.list);
-      });
-    })
+    // let swipe = new Promise((resolve, reject) => {
+    //   axios.post('/homes/swipe').then((data)=>{
+    //   axios.get('http://127.0.0.1:9010/ad').then((data)=>{
+    //       console.log(data);
+    //     resolve(data.data.list);
+    //   });
+    // })
+      let swipe = new Promise((resolve, reject) => {
+          client.query({query: GET_INDEX_ADS}).then(result =>
+              resolve(result.data.IndexAdList.list));
+      })
     let menu = new Promise((resolve, reject) => {
       axios.post('/homes/menu').then((data)=>{
         resolve(data.data.list);
