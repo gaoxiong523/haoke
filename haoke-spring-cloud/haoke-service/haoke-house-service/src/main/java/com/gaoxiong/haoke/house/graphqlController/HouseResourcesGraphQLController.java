@@ -1,12 +1,12 @@
 package com.gaoxiong.haoke.house.graphqlController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import graphql.GraphQL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -17,10 +17,13 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/graphql")
+@CrossOrigin
 public class HouseResourcesGraphQLController {
 
     @Autowired()
     private GraphQL graphQL;
+
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @GetMapping()
     public Map<String, Object> graphql( @RequestParam("query") String query ){
@@ -28,6 +31,16 @@ public class HouseResourcesGraphQLController {
         return map;
     }
 
+    @PostMapping
+    public Map<String, Object> postgraphql( @RequestBody String json ) throws IOException {
+        JsonNode jsonNode = MAPPER.readTree(json);
+        if (jsonNode.has("query")) {
+            String query = jsonNode.get("query").asText();
+            Map<String, Object> map = graphQL.execute(query).toSpecification();
+            return map;
+        }
+        return null;
+    }
 
 
 }
