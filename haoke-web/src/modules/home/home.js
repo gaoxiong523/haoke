@@ -72,7 +72,7 @@ class Home extends React.Component {
               resolve(result.data.IndexAdList.list));
       })
     let menu = new Promise((resolve, reject) => {
-      axios.post('/homes/menu').then((data)=>{
+      axios.get('http://127.0.0.1:9002/house/mock/index/menu').then((data)=>{
         resolve(data.data.list);
       });
     })
