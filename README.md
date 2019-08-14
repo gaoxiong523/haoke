@@ -76,9 +76,15 @@ zuul:
 ---
 docker redis 集群搭建.
 ```html
-https://github.com/Grokzen/docker-redis-cluster
-参考
-使用这个实现
-https://yq.aliyun.com/articles/57953
+https://blog.csdn.net/weixin_41622183/article/details/86600515
+https://blog.csdn.net/qq_39211866/article/details/88044546
+https://www.cnblogs.com/chen-lhx/p/7374217.html
+https://blog.csdn.net/qq_28538407/article/details/81878609
+根据博主 操作 进行会有一个坑,关于docker 挂载目录的权限问题
 
+# Fatal error, can't open config file
+docker-compose.yml文件中加入
+
+privileged: true
+授予特权即可,注意true前面要有空格,否则会文件报错
 ```
