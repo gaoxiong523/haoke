@@ -9,7 +9,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * @author gaoxiong
  * @ClassName ZuulCorsConfig
- * @Description 配置网关跨域解决前端调用后端服务 的跨域 问题
+ * @Description 配置网关跨域,请求时的跨域
  * @date 2019/8/13 0013 下午 9:16
  */
 @Configuration

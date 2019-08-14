@@ -73,3 +73,12 @@ Failed to load http://127.0.0.1:9002/house/graphql: The 'Access-Control-Allow-Or
 zuul:
   sensitive-headers: Access-Control-Allow-Origin,Access-Control-Allow-Methods #解决跨域获取不到返回值问题
 ```
+---
+docker redis 集群搭建.
+```html
+https://github.com/Grokzen/docker-redis-cluster
+参考
+使用这个实现
+https://yq.aliyun.com/articles/57953
+
+```

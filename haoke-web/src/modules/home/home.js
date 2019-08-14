@@ -12,7 +12,8 @@ import Calculator from './calc.js';
 import SearchBar from './searchbar.js';
 
 import ApolloClient from 'apollo-boost';
-import gql from "graphql-tag";
+// import gql from "graphql-tag";
+import { gql } from "apollo-boost";
 
 //定义客户端
 const client = new ApolloClient({
@@ -77,17 +78,17 @@ class Home extends React.Component {
       });
     })
     let info = new Promise((resolve, reject) => {
-      axios.post('/homes/info').then((data)=>{
+      axios.get('http://127.0.0.1:9002/house/mock/index/info').then((data)=>{
         resolve(data.data.list);
       });
     })
     let faq = new Promise((resolve, reject) => {
-      axios.post('/homes/faq').then((data)=>{
+      axios.get('http://127.0.0.1:9002/house/mock/index/faq').then((data)=>{
         resolve(data.data.list);
       });
     })
     let house = new Promise((resolve, reject) => {
-      axios.post('/homes/house').then((data)=>{
+      axios.get('http://127.0.0.1:9002/house/mock/index/house').then((data)=>{
         resolve(data.data.list);
       });
     })

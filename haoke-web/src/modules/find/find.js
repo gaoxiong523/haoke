@@ -9,7 +9,7 @@ class RecoMessage extends React.Component {
     super(props);
     this.state = {
       params: {
-        url: '/infos/list',
+        url: 'http://127.0.0.1:9002/house/mock/infos/list',
         data: {
           type: 1
         }
@@ -28,7 +28,7 @@ class TopMessage extends React.Component {
     super(props);
     this.state = {
       params: {
-        url: '/infos/list',
+        url: 'http://127.0.0.1:9002/house/mock/infos/list',
         data: {
           type: 2
         }
@@ -47,7 +47,7 @@ class AskAnswer extends React.Component {
     super(props);
     this.state = {
       params: {
-        url: '/infos/list',
+        url: '/http://127.0.0.1:9002/house/mock/infos/list',
         data: {
           type: 3
         }

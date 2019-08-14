@@ -38,6 +38,7 @@ public class MyZuulFilter extends ZuulFilter {
         System.out.println(" 进入了 自定义过滤器");
         HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
         Map<String, String[]> parameterMap = request.getParameterMap();
+        System.out.println(parameterMap.get("header"));
         log.info("{}",parameterMap);
         return null;
     }
