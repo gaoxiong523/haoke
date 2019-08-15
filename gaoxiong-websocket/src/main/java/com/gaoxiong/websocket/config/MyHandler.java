@@ -16,7 +16,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class MyHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished ( WebSocketSession session ) throws Exception {
-       session.sendMessage(new TextMessage("来了老弟!!!!!!"));
+        String uid = (String) session.getAttributes().get("uid");
+        System.out.println("uid = >" + uid);
+        session.sendMessage(new TextMessage("来了老弟!!!!!!"));
     }
 
     @Override
