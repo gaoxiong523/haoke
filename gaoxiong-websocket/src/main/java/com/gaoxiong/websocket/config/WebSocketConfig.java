@@ -18,16 +18,19 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
     @Bean
-    public ServerEndpointExporter serverEndpointExporter(){
+    public ServerEndpointExporter serverEndpointExporter () {
         return new ServerEndpointExporter();
     }
 
     @Autowired
     private MyHandler myHandler;
+    @Autowired
+    private MyHandshakeInterceptor myHandshakeInterceptor;
 
     @Override
     public void registerWebSocketHandlers ( WebSocketHandlerRegistry registry ) {
-        registry.addHandler(myHandler, "/ws").setAllowedOrigins("*");
+        registry.addHandler(myHandler, "/ws").setAllowedOrigins("*")
+                .addInterceptors(myHandshakeInterceptor);
     }
 
 
