@@ -1,0 +1,10 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: haoke-im
+  data:
+    mongodb:
+      host: 106.12.84.126
+      port: 27017
+      database: test
