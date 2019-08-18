@@ -120,3 +120,631 @@ Pull方式里，取消息的过程需要用户自己写，首先通过打算消�
 RocketMQ不保证消息不重复，如果你的业务需要保证严格的不重复消息，需要你自己在业务端去重。
 
 ```
+
+##消息去重设计 参考
+```text
+使用RocketMQ如何处理重复消息
+https://blog.csdn.net/zhaoming19870124/article/details/90902197
+https://www.jianshu.com/p/fa80604054a3
+
+```
+
+##如何 选择 刷盘方式
+```text
+刷盘方式的选择要根据具体 的业务来选择,如果对数据的一致性要求不高,如聊天记录,日志记录等则可以选择异步刷盘
+如果 是对用户余额操作则最好 选择同步 刷盘,宁可牺牲性能也要保证一致性.
+
+```
+
+```text
+开启防火墙端口
+
+[root@localhost 2m-2s-async]# firewall-cmd --zone=public --add-port=10911/tcp --permanent
+success
+[root@localhost 2m-2s-async]# firewall-cmd --zone=public --add-port=9876/tcp --permanent
+success
+[root@localhost 2m-2s-async]# systemctl restart firewalld
+```
+##rocketmq2master2slave docker集群搭建
+docker-compose配置文件
+```yaml
+version: '3.5'
+
+services:
+#namesrv1
+  rmqnamesrv1:
+    image: foxiswho/rocketmq:server
+    container_name: rmqnamesrv1
+    ports:
+      - 9876:9876
+    volumes:
+      - ./namesrv1/logs:/opt/logs
+      - ./namesrv1/store:/opt/store
+    environment:
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
+    networks:
+        rmq:
+          aliases:
+            - rmqnamesrv1
+#namesrv2            
+  rmqnamesrv2:
+    image: foxiswho/rocketmq:server
+    container_name: rmqnamesrv2
+    ports:
+      - 9877:9876
+    volumes:
+      - ./namesrv2/logs:/opt/logs
+      - ./namesrv2/store:/opt/store
+    environment:
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-Xms128m -Xmx128m -Xmn128m"
+    networks:
+        rmq:
+          aliases:
+            - rmqnamesrv2   
+
+#broker-master-1            
+  rmqbroker-master-1:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker-master-1
+    links:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    ports:
+      - 10909:10909
+      - 10911:10911
+      - 10912:10912
+    privileged: true  
+    volumes:
+      - ./brokerconf_master_1/logs:/opt/logs
+      - ./brokerconf_master_1/store:/opt/store
+      - ./brokerconf_master_1/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+        NAMESRV_ADDR: "192.168.150.131:9876;192.168.150.131:9877"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-master-2
+
+#broker-master-2            
+  rmqbroker-master-2:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker-master-2
+    links:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    ports:
+      - 10809:10809
+      - 10811:10811
+      - 10812:10812
+    privileged: true  
+    volumes:
+      - ./brokerconf_master_2/logs:/opt/logs
+      - ./brokerconf_master_2/store:/opt/store
+      - ./brokerconf_master_2/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+        NAMESRV_ADDR: "192.168.150.131:9877;192.168.150.131:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-master-2
+
+#broker-slave-1            
+  rmqbroker-slave-1:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker-slave-1
+    links:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    ports:
+      - 10709:10709
+      - 10711:10711
+      - 10712:10712
+    privileged: true  
+    volumes:
+      - ./brokerconf_slave_1/logs:/opt/logs
+      - ./brokerconf_slave_1/store:/opt/store
+      - ./brokerconf_slave_1/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+        NAMESRV_ADDR: "192.168.150.131:9876;192.168.150.131:9877"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-slave-1
+#broker-slave-2            
+  rmqbroker-slave-2:
+    image: foxiswho/rocketmq:broker
+    container_name: rmqbroker-slave-2
+    links:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    ports:
+      - 10609:10609
+      - 10611:10611
+      - 10612:10612
+    privileged: true  
+    volumes:
+      - ./brokerconf_slave_2/logs:/opt/logs
+      - ./brokerconf_slave_2/store:/opt/store
+      - ./brokerconf_slave_2/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+        NAMESRV_ADDR: "192.168.150.131:9877;192.168.150.131:9876"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms128m -Xmx128m -Xmn128m"
+    command: mqbroker -c /etc/rocketmq/broker.conf
+    depends_on:
+      - rmqnamesrv1
+      - rmqnamesrv2
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-slave-2
+
+          
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqconsole
+    ports:
+      - 8180:8080
+    environment:
+        JAVA_OPTS: "-Drocketmq.config.namesrvAddr=192.168.150.131:9876;192.168.150.131:9877 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    depends_on:
+      - rmqnamesrv1
+      - rmqnamesrv2
+      - rmqbroker-master-1
+      - rmqbroker-master-2
+      - rmqbroker-slave-1
+      - rmqbroker-slave-2
+    networks:
+      rmq:
+        aliases:
+          - rmqconsole
+    links:
+      - rmqnamesrv1
+      - rmqnamesrv2
+
+networks:
+  rmq:
+    name: rmq
+    driver: bridge
+```
+broker配置文件 
+```yaml
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+
+#所属集群名字
+brokerClusterName=GaoxiongCluster
+
+#broker名字，注意此处不同的配置文件填写的不一样，如果在broker-a.properties使用:broker-a,
+#在broker-b.properties使用:broker-b
+#master 和slave的 brokerName要保持一样
+brokerName=broker01
+
+#0 表示Master，>0 表示Slave
+brokerId=0
+
+#nameServer地址，分号分割
+namesrvAddr=192.168.150.131:9876;192.168.150.131:9877
+
+#启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.120:10909> failed
+# 解决方式1 加上一句producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP
+brokerIP1=192.168.150.131
+brokerIP2=192.168.150.131
+
+#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums=4
+
+#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭 ！！！这里仔细看是false，false，false
+#原因下篇博客见~ 哈哈哈哈
+autoCreateTopicEnable=true
+
+#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup=true
+
+#Broker 对外服务的监听端口
+listenPort=10911
+
+#删除文件时间点，默认凌晨4点
+deleteWhen=04
+
+#文件保留时间，默认48小时
+fileReservedTime=48
+
+#commitLog每个文件的大小默认1G
+mapedFileSizeCommitLog=1073741824
+
+#ConsumeQueue每个文件默认存30W条，根据业务情况调整
+mapedFileSizeConsumeQueue=300000
+
+#destroyMapedFileIntervalForcibly=120000
+#redeleteHangedFileInterval=120000
+#检测物理文件磁盘空间
+diskMaxUsedSpaceRatio=88
+#存储路径
+#storePathRootDir=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store
+#commitLog 存储路径
+#storePathCommitLog=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store/commitlog
+#消费队列存储
+#storePathConsumeQueue=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store/consumequeue
+#消息索引存储路径
+#storePathIndex=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store/index
+#checkpoint 文件存储路径
+#storeCheckpoint=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store/checkpoint
+#abort 文件存储路径
+#abortFile=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_1/store/abort
+#限制的消息大小
+maxMessageSize=65536
+
+#flushCommitLogLeastPages=4
+#flushConsumeQueueLeastPages=2
+#flushCommitLogThoroughInterval=10000
+#flushConsumeQueueThoroughInterval=60000
+
+#Broker 的角色
+#- ASYNC_MASTER 异步复制Master
+#- SYNC_MASTER 同步双写Master
+#- SLAVE
+brokerRole=SYNC_MASTER
+
+#刷盘方式
+#- ASYNC_FLUSH 异步刷盘
+#- SYNC_FLUSH 同步刷盘
+flushDiskType=ASYNC_FLUSH
+
+#发消息线程池数量
+#sendMessageThreadPoolNums=128
+#拉消息线程池数量
+#pullMessageThreadPoolNums=128
+
+```
+
+```yaml
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+
+#所属集群名字
+brokerClusterName=GaoxiongCluster
+
+#broker名字，注意此处不同的配置文件填写的不一样，如果在broker-a.properties使用:broker-a,
+#在broker-b.properties使用:broker-b
+brokerName=broker02
+
+#0 表示Master，>0 表示Slave
+brokerId=0
+
+#nameServer地址，分号分割
+namesrvAddr=192.168.150.131:9876;192.168.150.131:9877
+
+#启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.120:10909> failed
+# 解决方式1 加上一句producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP
+brokerIP1=192.168.150.131
+brokerIP2=192.168.150.131
+
+#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums=4
+
+#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭 ！！！这里仔细看是false，false，false
+#原因下篇博客见~ 哈哈哈哈
+autoCreateTopicEnable=true
+
+#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup=true
+
+#Broker 对外服务的监听端口
+listenPort=10811
+
+#删除文件时间点，默认凌晨4点
+deleteWhen=04
+
+#文件保留时间，默认48小时
+fileReservedTime=48
+
+#commitLog每个文件的大小默认1G
+mapedFileSizeCommitLog=1073741824
+
+#ConsumeQueue每个文件默认存30W条，根据业务情况调整
+mapedFileSizeConsumeQueue=300000
+
+#destroyMapedFileIntervalForcibly=120000
+#redeleteHangedFileInterval=120000
+#检测物理文件磁盘空间
+diskMaxUsedSpaceRatio=88
+#存储路径
+#storePathRootDir=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store
+#commitLog 存储路径
+#storePathCommitLog=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store/commitlog
+#消费队列存储
+#storePathConsumeQueue=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store/consumequeue
+#消息索引存储路径
+#storePathIndex=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store/index
+#checkpoint 文件存储路径
+#storeCheckpoint=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store/checkpoint
+#abort 文件存储路径
+#abortFile=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_master_2/store/abort
+#限制的消息大小
+maxMessageSize=65536
+
+#flushCommitLogLeastPages=4
+#flushConsumeQueueLeastPages=2
+#flushCommitLogThoroughInterval=10000
+#flushConsumeQueueThoroughInterval=60000
+
+#Broker 的角色
+#- ASYNC_MASTER 异步复制Master
+#- SYNC_MASTER 同步双写Master
+#- SLAVE
+brokerRole=SYNC_MASTER
+
+#刷盘方式
+#- ASYNC_FLUSH 异步刷盘
+#- SYNC_FLUSH 同步刷盘
+flushDiskType=ASYNC_FLUSH
+
+#发消息线程池数量
+#sendMessageThreadPoolNums=128
+#拉消息线程池数量
+#pullMessageThreadPoolNums=128
+
+```
+```yaml
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+
+#所属集群名字
+brokerClusterName=GaoxiongCluster
+
+#broker名字，注意此处不同的配置文件填写的不一样，如果在broker-a.properties使用:broker-a,
+#在broker-b.properties使用:broker-b
+#master 和slave的 brokerName要保持一样
+brokerName=broker01
+
+#0 表示Master，>0 表示Slave
+brokerId=1
+
+#nameServer地址，分号分割
+namesrvAddr=192.168.150.131:9876;192.168.150.131:9877
+
+#启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.120:10909> failed
+# 解决方式1 加上一句producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP
+brokerIP1=192.168.150.131
+brokerIP2=192.168.150.131
+
+#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums=4
+
+#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭 ！！！这里仔细看是false，false，false
+#原因下篇博客见~ 哈哈哈哈
+autoCreateTopicEnable=true
+
+#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup=true
+
+#Broker 对外服务的监听端口
+listenPort=10711
+
+#删除文件时间点，默认凌晨4点
+deleteWhen=04
+
+#文件保留时间，默认48小时
+fileReservedTime=48
+
+#commitLog每个文件的大小默认1G
+mapedFileSizeCommitLog=1073741824
+
+#ConsumeQueue每个文件默认存30W条，根据业务情况调整
+mapedFileSizeConsumeQueue=300000
+
+#destroyMapedFileIntervalForcibly=120000
+#redeleteHangedFileInterval=120000
+#检测物理文件磁盘空间
+diskMaxUsedSpaceRatio=88
+#存储路径
+#storePathRootDir=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store
+#commitLog 存储路径
+#storePathCommitLog=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store/commitlog
+#消费队列存储
+#storePathConsumeQueue=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store/consumequeue
+#消息索引存储路径
+#storePathIndex=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store/index
+#checkpoint 文件存储路径
+#storeCheckpoint=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store/checkpoint
+#abort 文件存储路径
+#abortFile=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_1/store/abort
+#限制的消息大小
+maxMessageSize=65536
+
+#flushCommitLogLeastPages=4
+#flushConsumeQueueLeastPages=2
+#flushCommitLogThoroughInterval=10000
+#flushConsumeQueueThoroughInterval=60000
+
+#Broker 的角色
+#- ASYNC_MASTER 异步复制Master
+#- SYNC_MASTER 同步双写Master
+#- SLAVE
+brokerRole=SLAVE
+
+#刷盘方式
+#- ASYNC_FLUSH 异步刷盘
+#- SYNC_FLUSH 同步刷盘
+flushDiskType=ASYNC_FLUSH
+
+#发消息线程池数量
+#sendMessageThreadPoolNums=128
+#拉消息线程池数量
+#pullMessageThreadPoolNums=128
+
+```
+```yaml
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+
+#所属集群名字
+brokerClusterName=GaoxiongCluster
+
+#broker名字，注意此处不同的配置文件填写的不一样，如果在broker-a.properties使用:broker-a,
+#在broker-b.properties使用:broker-b
+#master 和slave的 brokerName要保持一样
+brokerName=broker02
+
+#0 表示Master，>0 表示Slave
+brokerId=1
+
+#nameServer地址，分号分割
+namesrvAddr=192.168.150.131:9876;192.168.150.131:9877
+
+#启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to <192.168.0.120:10909> failed
+# 解决方式1 加上一句producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP
+brokerIP1=192.168.150.131
+brokerIP2=192.168.150.131
+
+#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums=4
+
+#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭 ！！！这里仔细看是false，false，false
+#原因下篇博客见~ 哈哈哈哈
+autoCreateTopicEnable=true
+
+#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup=true
+
+#Broker 对外服务的监听端口
+listenPort=10611
+
+#删除文件时间点，默认凌晨4点
+deleteWhen=04
+
+#文件保留时间，默认48小时
+fileReservedTime=48
+
+#commitLog每个文件的大小默认1G
+mapedFileSizeCommitLog=1073741824
+
+#ConsumeQueue每个文件默认存30W条，根据业务情况调整
+mapedFileSizeConsumeQueue=300000
+
+#destroyMapedFileIntervalForcibly=120000
+#redeleteHangedFileInterval=120000
+#检测物理文件磁盘空间
+diskMaxUsedSpaceRatio=88
+#存储路径
+#storePathRootDir=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store
+#commitLog 存储路径
+#storePathCommitLog=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store/commitlog
+#消费队列存储
+#storePathConsumeQueue=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store/consumequeue
+#消息索引存储路径
+#storePathIndex=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store/index
+#checkpoint 文件存储路径
+#storeCheckpoint=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store/checkpoint
+#abort 文件存储路径
+#abortFile=/home/rmq/docker-rocketmq/rmq/2master2slave/brokerconf_slave_2/store/abort
+#限制的消息大小
+maxMessageSize=65536
+
+#flushCommitLogLeastPages=4
+#flushConsumeQueueLeastPages=2
+#flushCommitLogThoroughInterval=10000
+#flushConsumeQueueThoroughInterval=60000
+
+#Broker 的角色
+#- ASYNC_MASTER 异步复制Master
+#- SYNC_MASTER 同步双写Master
+#- SLAVE
+brokerRole=SLAVE
+
+#刷盘方式
+#- ASYNC_FLUSH 异步刷盘
+#- SYNC_FLUSH 同步刷盘
+flushDiskType=ASYNC_FLUSH
+
+#发消息线程池数量
+#sendMessageThreadPoolNums=128
+#拉消息线程池数量
+#pullMessageThreadPoolNums=128
+
+```
+###`虚拟机搭建中的坑
+```text
+centos7默认防火墙是开的,容器之间通信会被 防火墙限制,所以可先启动容器,然后 再关闭防火墙即可正常
+运行,当然生产环境不建议这么做. 其实,可以在防火墙中配置端口过滤,把容器的端口开放也是可以的 .
+命令如下
+    firewall-cmd --permanent --add-port=10911/tcp
+    firewall-cmd --permanent --add-port=10811/tcp
+    firewall-cmd --permanent --add-port=10711/tcp
+    firewall-cmd --permanent --add-port=10611/tcp
+
+添加端口的设置并没有成功!
+```

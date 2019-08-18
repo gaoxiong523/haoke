@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
 public class SyncProducer {
     public static void main ( String[] args ) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("haoke-im");
-        producer.setNamesrvAddr("106.12.84.126:9876");
+        producer.setNamesrvAddr("192.168.150.131:9876;192.168.150.131:9877");
         producer.start();
         Message message = new Message("haoke-im-topic", "测试消息".getBytes(Charset.defaultCharset()));
         SendResult sendResult = producer.send(message);

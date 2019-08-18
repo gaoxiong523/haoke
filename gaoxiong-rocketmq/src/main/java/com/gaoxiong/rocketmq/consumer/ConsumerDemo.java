@@ -21,7 +21,7 @@ import java.util.Set;
 public class ConsumerDemo {
     public static void main ( String[] args ) throws MQClientException {
         DefaultMQPushConsumer pullConsumer = new DefaultMQPushConsumer("haoke-im");
-        pullConsumer.setNamesrvAddr("106.12.84.126:9876");
+        pullConsumer.setNamesrvAddr("192.168.150.131:9876;192.168.150.131:9877");
         pullConsumer.subscribe("haoke-im-topic", "*");
 //        Set<MessageQueue> messageQueues = pullConsumer.fetchSubscribeMessageQueues("haoke-im-topic");
 
