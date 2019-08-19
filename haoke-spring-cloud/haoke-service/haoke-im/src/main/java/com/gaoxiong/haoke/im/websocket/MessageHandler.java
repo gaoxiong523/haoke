@@ -5,12 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gaoxiong.haoke.im.pojo.Message;
 import com.gaoxiong.haoke.im.pojo.UserData;
 import com.gaoxiong.haoke.im.service.MessageService;
+import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.core.RocketMQListener;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,10 +26,18 @@ import java.util.Map;
  * @date 2019/8/15 17:26
  */
 @Component
-public class MessageHandler extends TextWebSocketHandler {
+@RocketMQMessageListener(
+        topic = "haoke-im-send-message-topic",
+        consumerGroup = "haoke-im-consumer-group",
+        selectorExpression = "SEND_MSG"
+)
+public class MessageHandler extends TextWebSocketHandler implements RocketMQListener<Message> {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -60,6 +73,31 @@ public class MessageHandler extends TextWebSocketHandler {
             toSession.sendMessage(new TextMessage(MAPPER.writeValueAsString(saveMessage)));
             //更新消息状态,todo 消息的状态是否包括已发送,未发送,已读,未读
             messageService.updateMessage(saveMessage.getId().toHexString(), 1);
+        } else {
+            //构建消息,发送
+            org.springframework.messaging.Message<Message> build1 = MessageBuilder.withPayload(saveMessage).build();
+            //topic:tags 设置主题和标签
+            rocketMQTemplate.send("haoke-im-send-message-topic:SEND_MSG", build1);
         }
+    }
+
+
+    @Override
+    public void onMessage ( Message message ) {
+        System.out.println("从消息系统收到的消息是  " +"message = " + message);
+        try {
+            Long toId = message.getTo().getId();
+            WebSocketSession toSession = SESSION_MAP.get(toId);
+            //判断用户是否在线
+            if (toSession != null&& toSession.isOpen()) {
+                //发送消息
+                toSession.sendMessage(new TextMessage(message.toString()));
+                //更新消息状态
+                this.messageService.updateMessage(message.getId().toString(), 1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
