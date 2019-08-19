@@ -1,3 +1,5 @@
+
+
 server:
   port: 9012
 spring:
@@ -8,6 +10,66 @@ spring:
       host: 106.12.84.126
       port: 27017
       database: test
+  profiles: 9012
+rocketmq:
+  name-server: 106.12.84.126:9876;106.12.84.126:9877
+  producer:
+    group: haoke-im
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}
+
+---
+server:
+  port: 9022
+spring:
+  application:
+    name: haoke-im
+  data:
+    mongodb:
+      host: 106.12.84.126
+      port: 27017
+      database: test
+  profiles: 9022
+rocketmq:
+  name-server: 106.12.84.126:9876;106.12.84.126:9877
+  producer:
+    group: haoke-im
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.application.name}
+
+---
+
+server:
+  port: 9032
+spring:
+  application:
+    name: haoke-im
+  data:
+    mongodb:
+      host: 106.12.84.126
+      port: 27017
+      database: test
+  profiles: 9032
 rocketmq:
   name-server: 106.12.84.126:9876;106.12.84.126:9877
   producer:

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gaoxiong.haoke.im.pojo.Message;
 import com.gaoxiong.haoke.im.pojo.UserData;
 import com.gaoxiong.haoke.im.service.MessageService;
+import org.apache.rocketmq.spring.annotation.MessageModel;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -29,7 +30,8 @@ import java.util.Map;
 @RocketMQMessageListener(
         topic = "haoke-im-send-message-topic",
         consumerGroup = "haoke-im-consumer-group",
-        selectorExpression = "SEND_MSG"
+        selectorExpression = "SEND_MSG",
+        messageModel = MessageModel.BROADCASTING
 )
 public class MessageHandler extends TextWebSocketHandler implements RocketMQListener<Message> {
 
@@ -45,14 +47,16 @@ public class MessageHandler extends TextWebSocketHandler implements RocketMQList
 
     @Override
     public void afterConnectionEstablished ( WebSocketSession session ) throws Exception {
-        Long uid = (Long) session.getAttributes().get("uid");
+        Object uid1 = session.getAttributes().get("uid");
+        Long uid = Long.valueOf(String.valueOf(uid1));
         //将当前用户的session放入map中
         SESSION_MAP.put(uid, session);
     }
 
+
     @Override
     protected void handleTextMessage ( WebSocketSession session, TextMessage message ) throws Exception {
-        Long uid = (Long) session.getAttributes().get("uid");
+        Long uid = Long.valueOf(session.getAttributes().get("uid").toString());
         String payload = message.getPayload();
         JsonNode jsonNode = MAPPER.readTree(payload);
         Long toId = jsonNode.get("toId").asLong();
@@ -91,7 +95,7 @@ public class MessageHandler extends TextWebSocketHandler implements RocketMQList
             //判断用户是否在线
             if (toSession != null&& toSession.isOpen()) {
                 //发送消息
-                toSession.sendMessage(new TextMessage(message.toString()));
+                toSession.sendMessage(new TextMessage(message.getMsg()));
                 //更新消息状态
                 this.messageService.updateMessage(message.getId().toString(), 1);
             }

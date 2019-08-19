@@ -21,6 +21,10 @@ public class MyHandshakeInterceptor implements HandshakeInterceptor {
                                      ServerHttpResponse response,
                                      WebSocketHandler wsHandler,
                                      Map<String, Object> attributes ) throws Exception {
+        String path = request.getURI().getPath();
+        int i = path.lastIndexOf("/");
+        String uid = path.substring(i+1);
+        attributes.put("uid", uid);
         System.out.println(" 开始握手" );
         return true;
     }

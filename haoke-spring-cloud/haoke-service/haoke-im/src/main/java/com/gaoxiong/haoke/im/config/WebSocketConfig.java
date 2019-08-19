@@ -32,7 +32,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers ( WebSocketHandlerRegistry registry ) {
-        registry.addHandler(messageHandler, "/ws").setAllowedOrigins("*")
+        registry.addHandler(messageHandler, "ws/**").setAllowedOrigins("*")
                 .addInterceptors(interceptor);
     }
 
