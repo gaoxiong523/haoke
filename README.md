@@ -748,3 +748,18 @@ centos7默认防火墙是开的,容器之间通信会被 防火墙限制,所以�
 
 添加端口的设置并没有成功!
 ```
+###elastic search
+```text
+http://www.elastichq.org/
+ElasticHQ
+Management and Monitoring for Elasticsearch.
+es集群的管理和监控项目,比elasticsearc-head高端多了
+
+
+
+```
+###es 分词器安装
+
+###es 插件安装
+
+###es docker 安装
