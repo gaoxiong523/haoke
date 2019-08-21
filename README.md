@@ -763,3 +763,126 @@ es集群的管理和监控项目,比elasticsearc-head高端多了
 ###es 插件安装
 
 ###es docker 安装
+```docker
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+docker run -d --name es-head  -p 9100:9100 mobz/elasticsearch-head:5
+
+启动head 因为跨域的原因,需要在 配置文件中加上
+http.cors.enabled: true
+http.cors.allow-origin: "*" 
+xpack.security.enabled: false
+
+```
+##es docker-compose
+```yaml
+version: '3'
+services:
+     es-master:
+       image:  elasticsearch:6.4.3
+       container_name: es-master
+       restart: always
+       privileged: true
+       volumes:
+         - ./master/data:/usr/share/elasticsearch/data:rw
+         - ./master/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+         - ./master/logs:/user/share/elasticsearch/logs:rw
+       ports:
+         - "9200:9200"
+         - "9300:9300"
+
+     es-node1:
+       image:  elasticsearch:6.4.3
+       container_name: es-node1
+       restart: always
+       ## 权限问题
+       privileged: true
+       volumes:
+         - ./node1/data:/usr/share/elasticsearch/data:rw
+         - ./node1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+         - ./node1/logs:/user/share/elasticsearch/logs:rw
+     es-node2:
+       image:  elasticsearch:6.4.3
+       container_name: es-node2
+       restart: always
+       privileged: true
+       volumes:
+         - ./node2/data:/usr/share/elasticsearch/data:rw
+         - ./node2/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+         - ./node2/logs:/user/share/elasticsearch/logs:rw
+     es-head:
+       image: tobias74/elasticsearch-head:6
+       container_name: es-head
+       restart: always
+       ports:
+       - "9100:9100"
+```
+###master
+```yaml
+bootstrap.memory_lock: false
+cluster.name: "es-cluster"
+node.name: es-master
+node.master: true
+node.data: false
+network.host: 0.0.0.0
+http.port: 9200
+transport.tcp.port: 9300
+discovery.zen.ping.unicast.hosts: *.*.*.*:9300, *.*.*.*:9301, *.*.*.*:9302
+discovery.zen.minimum_master_nodes: 1
+
+path.logs: /usr/share/elasticsearch/logs
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+xpack.security.audit.enabled: true
+```
+###node配置文件
+```yaml
+cluster.name: "es-cluster"
+node.name: node2
+node.master: false
+node.data: true
+network.host: 0.0.0.0
+http.port: 9202
+transport.tcp.port: 9302
+discovery.zen.ping.unicast.hosts: *.*.*.*:9300,  *.*.*.*:9301,  *.*.*.*:9302
+
+path.logs: /usr/share/elasticsearch/logs
+```
+node1,和node2的配置基本相同
+
+##docker容器中没有 vi 或vim 命令解决方法
+```yaml
+apt-get  update
+apt-get  install vi
+apt-get install  vim
+
+```
+###ElasticSearch-head 管理工具查询报 406 错误码
+```text
+进入head安装目录的 _site/ 文件目录，如果是使用 Docker 安装，需要先进入 Docker 容器。
+
+找到vendor.js文件并编辑，共有两处
+第一处在6886行 
+
+把内容 'application/x-www-form-urlencoded' 改成  'application/json;charset=UTF-8'
+
+
+第二处在7574行 
+
+把内容 'application/x-www-form-urlencoded' 改成  'application/json;charset=UTF-8'
+
+在命令行中，按 esc 键，输入:n，代表跳转到第n行，如:6886，就跳转到第6886行。
+
+```
+##一次请求多少性能最高？
+  ```text
+一次请求多少性能最高？
+整个批量请求需要被加载到接受我们请求节点的内存里，所以请求越大，给其它请求可用的内存就越小。有
+一个最佳的bulk请求大小。超过这个大小，性能不再提升而且可能降低。
+最佳大小，当然并不是一个固定的数字。它完全取决于你的硬件、你文档的大小和复杂度以及索引和搜索的
+负载。
+幸运的是，这个最佳点(sweetspot)还是容易找到的：试着批量索引标准的文档，随着大小的增长，当性能开
+始降低，说明你每个批次的大小太大了。开始的数量可以在1000~5000个文档之间，如果你的文档非常大，
+可以使用较小的批次。
+通常着眼于你请求批次的物理大小是非常有用的。一千个1kB的文档和一千个1MB的文档大不相同。一个好的
+批次最好保持在5-15MB大小间。
+```

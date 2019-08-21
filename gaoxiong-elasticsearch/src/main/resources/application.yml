@@ -1,0 +1,10 @@
+spring:
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      repositories:
+        enabled: true
+      cluster-nodes: 106.12.84.126:9300
+  es:
+    host: 106.12.84.126
+    port: 9300
