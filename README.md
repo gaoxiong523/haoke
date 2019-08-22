@@ -765,7 +765,20 @@ es集群的管理和监控项目,比elasticsearc-head高端多了
 
 ```
 ###es 分词器安装
+```text
+#如果使用docker运行
+docker cp /tmp/elasticsearch-analysis-ik-6.5.4.zip
+容器id或名称:/usr/share/elasticsearch/plugins/
+#进入容器
+docker exec -it 容器id /bin/bash
+mkdir /usr/share/elasticsearch/plugins/ik
 
+unzip elasticsearch-analysis-ik-6.5.4.zip -d /usr/share/elasticsearch/plugins/ik
+#重启容器即可
+docker restart elasticsearch
+记住删除压缩包
+
+```
 ###es 插件安装
 
 ###es docker 安装
@@ -891,4 +904,42 @@ apt-get install  vim
 可以使用较小的批次。
 通常着眼于你请求批次的物理大小是非常有用的。一千个1kB的文档和一千个1MB的文档大不相同。一个好的
 批次最好保持在5-15MB大小间。
+```
+```text
+https://github.com/spring-projects/spring-data-elasticsearch
+查看spring data elasticsearch 的版本依赖
+spring-data-elasticsearch 3.1.x 支持6.2.2-6.8.1版本的es
+```
+##创建IK分词器的索引
+```java
+@Data
+@Document(
+        indexName = "house",
+        type = "house"
+)
+@NoArgsConstructor
+@AllArgsConstructor
+public class House {
+    @Id
+    private Integer id;
+    @Field(
+            type = FieldType.Text,
+            fielddata = true,
+            analyzer = "ik_smart",//建议索引时的分词器
+            searchAnalyzer = "ik_max_word" //搜索时的分词器
+    )
+    private String title;
+
+    private Integer price;
+}
+
+ // 创建索引，会根据Item类的@Document注解信息来创建
+        boolean index = elasticsearchTemplate.createIndex(House.class);
+        // 配置映射，会根据Item类中的id、Field等字段来自动完成映射
+        boolean b = elasticsearchTemplate.putMapping(House.class);
+        
+   //如果不手动创建索引的话,springdata自动创建的索引不能根据我们配置的IK分词器来
+   //创建索引.
+   报错如下
+   failed to load elasticsearch nodes : org.elasticsearch.index.mapper.MapperParsingException: Mapping definition for [hobby] has unsupported parameters:  [fielddata : true] [analyzer : ik_smart] [search_analyzer : ik_max_word]
 ```
