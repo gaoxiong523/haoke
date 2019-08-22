@@ -1,7 +1,9 @@
 package com.gaoxiong.haoke.house.graphqlController;
 
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import graphql.ExecutionInput;
 import graphql.GraphQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,13 @@ public class HouseResourcesGraphQLController {
         JsonNode jsonNode = MAPPER.readTree(json);
         if (jsonNode.has("query")) {
             String query = jsonNode.get("query").asText();
-            Map<String, Object> map = graphQL.execute(query).toSpecification();
+            String variables = jsonNode.get("variables").toString();
+            Map map1 = MAPPER.readValue(variables, Map.class);
+            ExecutionInput executionInput = ExecutionInput.newExecutionInput()
+                    .query(query)
+                    .variables(map1)
+                    .build();
+            Map<String, Object> map = graphQL.execute(executionInput).toSpecification();
             return map;
         }
         return null;

@@ -6,7 +6,17 @@ type HaokeQuery {
     HouseResources(id:Long):HouseResources
     HouseResourcesPage:PageResult
     IndexAdList: IndexAdResult
+    MapHouseData(lng:Float,lat:Float,zoom:Int): MapHouseDataResult
 
+}
+
+type MapHouseDataResult{
+    list:[MapHouseXY]
+}
+
+type MapHouseXY{
+    x:Float
+    y:Float
 }
 
 type IndexAdResult{
