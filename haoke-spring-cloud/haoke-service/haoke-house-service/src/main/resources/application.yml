@@ -14,7 +14,11 @@ spring:
   jpa:
     database: MySQL
     show-sql: true
-
+  data:
+    mongodb:
+      host: 106.12.84.126
+      port: 27017
+      database: house
 server:
   port: 9010
 eureka:

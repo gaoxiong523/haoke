@@ -54,8 +54,8 @@ class MapHouse extends React.Component {
     }
 
     componentDidMount() {
-        let defaultX = 116.43244;
-        let defaultY = 39.929986;
+        let defaultX = 121.48130241985999;;
+        let defaultY = 31.235156971414239;
         let defaultZoom = 12;
         // 百度地图API功能
 

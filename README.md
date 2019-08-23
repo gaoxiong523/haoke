@@ -943,3 +943,46 @@ public class House {
    报错如下
    failed to load elasticsearch nodes : org.elasticsearch.index.mapper.MapperParsingException: Mapping definition for [hobby] has unsupported parameters:  [fielddata : true] [analyzer : ik_smart] [search_analyzer : ik_max_word]
 ```
+
+##关于地理位置
+```text
+注意距离要除以111.2（1度=111.2km）
+注意距离要除以111.2（1度=111.2km）
+注意距离要除以111.2（1度=111.2km）
+
+```
+```java
+public Collection<MapHouseXY> queryByTemplate( Float lng, Float lat, Integer zoom){
+        double distance = BAIDU_ZOOM.get(zoom) * 1.5 / 111.12; //1.5倍距离范围，根据实际需求调整
+        Query query = Query.query(Criteria.where("loc").near(new Point(lng,
+                lat)).maxDistance(distance));
+        List<MongoHouse> mongoHouses = this.mongoTemplate.find(query, MongoHouse.class);
+
+        List<MapHouseXY> xyList = mongoHouses.stream().map(m -> new MapHouseXY(m.getLoc()[0], m.getLoc()[1])).collect(Collectors.toList());
+        return xyList;
+    }
+    
+   //等同于
+   
+    @Override
+       public MapHouseDataResult queryHouseData ( Float lng, Float lat, Integer zoom ) {
+            //指定中心店
+           Point point = new Point(lng, lat);
+           //指定距离
+           Distance distance = new Distance(BAIDU_ZOOM.get(zoom)*1.5, Metrics.KILOMETERS);
+            //构造球型
+           Sphere sphere = new Sphere(point, distance);
+           //调用 repository 方法 ,repository 写法见下
+           List<MongoHouse> mongoHouseList = mongoHouseRepository.findAllByLocWithin(sphere);
+           List<MapHouseXY> xyList = mongoHouseList.stream().map(m -> new MapHouseXY(m.getLoc()[0], m.getLoc()[1])).collect(Collectors.toList());
+           return new MapHouseDataResult(xyList);
+       }
+       
+       
+         /**
+            * 根据指定球形,搜索范围
+            * @param sphere
+            * @return
+            */
+           List<MongoHouse> findAllByLocWithin ( Sphere sphere );
+```
