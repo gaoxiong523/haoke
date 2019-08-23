@@ -19,6 +19,11 @@ spring:
       host: 106.12.84.126
       port: 27017
       database: house
+    elasticsearch:
+      cluster-nodes: 106.12.84.126:9300
+      repositories:
+        enabled: true
+      cluster-name: docker-cluster
 server:
   port: 9010
 eureka:
