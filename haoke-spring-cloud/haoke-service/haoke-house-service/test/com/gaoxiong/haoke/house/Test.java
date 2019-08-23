@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author gaoxiong
@@ -49,14 +50,25 @@ public class Test {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @org.junit.Test
-    public void insertData () throws IOException {
+    public void insertData () throws Exception {
         List<String> lines = FileUtils.readLines(new File("F:\\code\\data.json"), "UTF-8");
-        for (String line : lines) {
-        HouseData houseData = MAPPER.readValue(line, HouseData.class);
-        log.info(houseData.toString());
-        HouseData save = houseDataRepository.save(houseData);
-        log.info(save.toString());
-        }
+//        for (String line : lines) {
+//        HouseData houseData = MAPPER.readValue(line, HouseData.class);
+//        log.info(houseData.toString());
+//        HouseData save = houseDataRepository.save(houseData);
+//        log.info(save.toString());
+//        }
+
+        List<HouseData> collect = lines.stream().map(line -> {
+            try {
+                return MAPPER.readValue(line, HouseData.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }).collect(Collectors.toList());
+
+        houseDataRepository.saveAll(collect);
 
     }
 

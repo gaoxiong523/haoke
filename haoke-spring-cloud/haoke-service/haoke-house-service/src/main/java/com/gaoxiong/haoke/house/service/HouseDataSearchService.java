@@ -48,7 +48,7 @@ public class HouseDataSearchService {
                 .withPageable(pageRequest)
                 .build();
         AggregatedPage<HouseData> houseData = elasticsearchTemplate.queryForPage(searchQuery, HouseData.class);
-
+        log.info(houseData.toString());
         return new SearchResult(houseData.getTotalPages(), houseData.getContent());
 
     }

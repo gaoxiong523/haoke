@@ -29,7 +29,7 @@ public class LianjiaPageProcessor implements PageProcessor {
         if (page.getResultItems().get("title") == null) {
             page.setSkip(true);
 //分页
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 100; i++) {
                 page.addTargetRequest("https://sh.lianjia.com/zufang/pg" + i);
             }
         }
@@ -43,7 +43,7 @@ public class LianjiaPageProcessor implements PageProcessor {
     public static void main ( String[] args ) {
         Spider.create(new LianjiaPageProcessor())
                 .addUrl("https://sh.lianjia.com/zufang/")
-                .thread(5)
+                .thread(10)
                 .addPipeline(new MyPipLine())
                 .start();
     }
