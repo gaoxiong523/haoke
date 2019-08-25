@@ -986,3 +986,72 @@ public Collection<MapHouseXY> queryByTemplate( Float lng, Float lat, Integer zoo
             */
            List<MongoHouse> findAllByLocWithin ( Sphere sphere );
 ```
+##es高亮显示的处理
+```java
+//核心思想就是查询结果的重新封装
+ public SearchResult search ( String keyWord, Integer page ) {
+        Integer size = 10;
+        PageRequest pageRequest = PageRequest.of(page - 1, size);
+//构造查询query
+        NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.matchQuery("title", keyWord))
+                .withHighlightFields(new HighlightBuilder.Field("title"))
+                .withPageable(pageRequest)
+                .build();
+        //重写searchresultMapper
+        AggregatedPage<HouseData> houseData = elasticsearchTemplate.queryForPage(searchQuery, HouseData.class, new SearchResultMapper() {
+            @Override
+            public <T> AggregatedPage<T> mapResults ( SearchResponse searchResponse, Class<T> aClass, Pageable pageable ) {
+                if (searchResponse.getHits().totalHits==0) {
+                    return new AggregatedPageImpl<>(Collections.emptyList());
+                }
+                //获取查询到的数据,然后 进行封装
+                List<T> list = new ArrayList<>();
+                for (SearchHit searchHit : searchResponse.getHits().getHits()) {
+                    T obj = (T) ReflectUtils.newInstance(aClass);
+                    Map<String, Object> hitSourceAsMap = searchHit.getSourceAsMap();
+
+                    //写入ID
+                    try {
+                        FieldUtils.writeField(obj, "id", searchHit.getId(), true);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
+                    //非高亮字段的数据,写入
+                    for (Map.Entry<String, Object> entry : hitSourceAsMap.entrySet()) {
+                        try {
+                            FieldUtils.writeField(obj,entry.getKey() ,entry.getValue() , true);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    for (Map.Entry<String, HighlightField> entry : searchHit.getHighlightFields().entrySet()) {
+                        StringBuilder sb = new StringBuilder();
+                        Text[] fragments = entry.getValue().getFragments();
+                        for (Text fragment : fragments) {
+                            sb.append(fragment);
+                        }
+                        //写入高亮的内容
+                        try {
+                            FieldUtils.writeField(obj,entry.getKey() ,sb.toString() , true);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    list.add(obj);
+
+                }
+                return new AggregatedPageImpl<>(list, pageable,searchResponse.getHits().totalHits );
+            }
+        });
+        log.info(houseData.toString());
+        return new SearchResult(houseData.getTotalPages(), houseData.getContent());
+
+    }
+```
+
+##搜索热词处理
+ 

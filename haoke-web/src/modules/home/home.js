@@ -44,7 +44,8 @@ class Home extends React.Component {
             globalLoading: true,
             mapShowFlag: false,
             calcShowFlag: false,
-            searchBarFlag: false
+            searchBarFlag: false,
+            searchKeyWord: ''
         };
     }
 
@@ -106,7 +107,8 @@ class Home extends React.Component {
                 faqLoading: true,
                 houseLoading: true,
                 globalLoading: false,
-                searchData:[]
+                searchData:[],
+                totalPage:0,
             })
             // this.setState({
             //   globalLoading: false
@@ -124,12 +126,14 @@ class Home extends React.Component {
     }
 
     search = (event, data) => {
-        let value = data.value;
+        let value = data.value?data.value:this.state.searchKeyWord;
+        let page = data.page?data.page:1
         console.log(value);
         let _this = this;
         _this.searchHandle();
-        axios.get("http://127.0.0.1:9002/house/search?keyWord=" + value + "&page=1").then((result) => {
-            _this.setState({searchData:result.list})
+        this.setState({searchKeyWord:value})
+        axios.get("http://127.0.0.1:9002/house/search?keyWord=" + value + "&page="+page).then((result) => {
+            _this.setState({searchData:result.list,totalPage:result.totalPage})
 
         });
     }
@@ -271,7 +275,7 @@ class Home extends React.Component {
             <div className='home-container'>
                 {this.state.mapShowFlag ? <MapHouse hideMap={this.hideMap}/> : null}
                 {this.state.calcShowFlag ? <Calculator hideCalc={this.hideCalc}/> : null}
-                {this.state.searchBarFlag ? <SearchBar searchData={this.state.searchData} hideSearchBar={this.hideSearchBar}/> : null}
+                {this.state.searchBarFlag ? <SearchBar searchPage={this.search} totalPage={this.state.totalPage} searchData={this.state.searchData} hideSearchBar={this.hideSearchBar}/> : null}
                 <Dimmer inverted active={this.state.globalLoading} page>
                     <Loader>Loading</Loader>
                 </Dimmer>
