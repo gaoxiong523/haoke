@@ -1055,3 +1055,100 @@ public Collection<MapHouseXY> queryByTemplate( Float lng, Float lat, Integer zoo
 
 ##搜索热词处理
  
+ 
+ 
+
+##redis 集群,sentinel哨兵模式
+```text
+https://blog.csdn.net/qq_39211866/article/details/88044546
+
+```
+```yaml
+version: '2'
+services:
+  master:
+    image: redis       ## 镜像
+    container_name: redis-master
+    command: redis-server --requirepass 123456
+    ports:
+    - "6379:6379"
+    networks:
+    - sentinel-master
+  slave1:
+    image: redis                ## 镜像
+    container_name: redis-slave-1
+    ports:
+    - "6380:6379"           ## 暴露端口
+    command: redis-server --slaveof redis-master 6379 --requirepass 123456 --masterauth 123456 
+    depends_on:
+    - master
+    networks:
+    - sentinel-master
+  slave2:
+    image: redis                ## 镜像
+    container_name: redis-slave-2
+    ports:
+    - "6381:6379"           ## 暴露端口
+    command: redis-server --slaveof redis-master 6379 --requirepass 123456 --masterauth 123456
+    depends_on:
+    - master
+    networks:
+    - sentinel-master
+networks:
+  sentinel-master:
+
+```
+```yaml
+version: '2'
+services:
+  sentinel1:
+    image: redis       ## 镜像
+    container_name: redis-sentinel-1
+    ports:
+    - 26739:26739
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+    - "./sentinel1.conf:/usr/local/etc/redis/sentinel.conf"
+  sentinel2:
+    image: redis                ## 镜像
+    container_name: redis-sentinel-2
+    ports:
+    - "26380:26379"           
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+    - "./sentinel2.conf:/usr/local/etc/redis/sentinel.conf"
+  sentinel3:
+    image: redis                ## 镜像
+    container_name: redis-sentinel-3
+    ports:
+    - "26381:26379"           
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+    - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
+networks:
+  default:
+    external:
+      name: redis_sentinel-master
+
+```
+
+```lombok.config
+port 26379
+dir /tmp
+sentinel monitor mymaster 172.28.0.3 6379 2 
+sentinel auth-pass mymaster 123456 
+sentinel down-after-milliseconds mymaster 30000
+sentinel parallel-syncs mymaster 1
+sentinel failover-timeout mymaster 10000  
+sentinel deny-scripts-reconfig yes
+
+```
+
+ ##Beats
+ ###什么是beats
+ ```text
+它是一个轻量型数据采集器,Beats平台集合了多种单一用途数据采集器,
+它们从成百上千或成千上万台机器和系统向Logstash或ElastticSearch
+发送数据.
+https://www.cnblogs.com/weschen/p/11046906.html
+```
