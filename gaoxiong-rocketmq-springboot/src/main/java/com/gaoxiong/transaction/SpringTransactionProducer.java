@@ -1,5 +1,6 @@
 package com.gaoxiong.transaction;
 
+import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -19,7 +20,7 @@ public class SpringTransactionProducer {
 
     public void sendTransactionMessage(String txProducerGroup,String topic,String msg){
         Message<String> stringMessage = MessageBuilder.withPayload(msg).build();
-        rocketMQTemplate.sendMessageInTransaction(txProducerGroup, topic,stringMessage ,null );
+        TransactionSendResult transactionSendResult = rocketMQTemplate.sendMessageInTransaction(txProducerGroup, topic, stringMessage, null);
         System.out.println(" 事务消息发送成功!= ");
     }
 }

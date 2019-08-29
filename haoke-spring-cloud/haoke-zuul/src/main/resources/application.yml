@@ -14,6 +14,36 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
 zuul:
+  ratelimit:
+    key-prefix: your-prefix
+    enabled: true
+    repository: redis
+    behind-proxy: true
+    add-response-headers: true
+    default-policy-list: #默认的全局配置
+      - limit: 10  #每个刷新间隔窗口的请求数量限制
+        quota: 1000  #每个刷新间隔窗口的请求时间限制(以秒为单位)
+        refresh-interval: 60 #默认值 以秒为单位
+        type:
+          - user
+          - origin
+          - url
+          - httpmethod
+    policy-list: #单个服务配置
+      myServiceId:
+        - limit: 10 #optional - request number limit per refresh interval window
+          quota: 1000 #optional - request time limit per refresh interval window (in seconds)
+          refresh-interval: 60 #default value (in seconds)
+          type: #optional
+            - user
+            - origin
+            - url
+        - type: #optional value for each type
+            - user=anonymous
+            - origin=somemachine.com
+            - url=/api #url prefix
+            - role=user
+            - httpmethod=get #case insensitive
   sensitive-headers: Access-Control-Allow-Origin,Access-Control-Allow-Methods #解决跨域获取不到返回值问题
   routes:
     house-service:
