@@ -45,10 +45,20 @@ zuul:
   strip-prefix: true
 spring:
   redis:
-    password: 123456
+#    password: 123456
     sentinel:
       master: mymaster
       nodes:
-        - 106.12.84.126:26379
-        - 106.12.84.126:26380
-        - 106.12.84.126:26381
+#        - 106.12.84.126:26379
+        - 192.168.150.131:26379
+#        - 106.12.84.126:26380
+        - 192.168.150.131:26380
+#        - 106.12.84.126:26381
+        - 192.168.150.131:26381
+
+    lettuce:
+      pool:
+        max-active: 50
+        max-wait: 1000ms
+        max-idle: 8
+        min-idle: 5
